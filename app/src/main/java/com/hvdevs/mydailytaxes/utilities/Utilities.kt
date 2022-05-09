@@ -13,35 +13,6 @@ import com.hvdevs.mydailytaxes.R
 
 object Utilities {
 
-    fun addFragment(fragmentManager: FragmentManager, idFrag: Int, fragment: Fragment){
-        val transition = fragmentManager.beginTransaction()
-        transition
-            .setCustomAnimations(
-                R.anim.frag_down_to_up,
-                R.anim.frag_up_to_down,
-                R.anim.frag_down_to_up,
-                R.anim.frag_up_to_down
-            )
-        transition
-            .add(idFrag, fragment)
-            .commit()
-    }
-
-    fun removeFragment(fragmentManager: FragmentManager, idFrag: Int){
-        val transition = fragmentManager.beginTransaction()
-        val frag = fragmentManager.findFragmentById(idFrag)
-        transition
-            .setCustomAnimations(
-                R.anim.frag_down_to_up,
-                R.anim.frag_up_to_down,
-                R.anim.frag_down_to_up,
-                R.anim.frag_up_to_down
-            )
-        transition
-            .remove(frag!!)
-            .commit()
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     @JvmStatic
     fun setupUI(view: View, activity: FragmentActivity?) {
@@ -68,7 +39,7 @@ object Utilities {
     }
 
     // metodo para esconder el teclado, usando el InputMethodManager que es la funcionalidad nativa de accesibilidad
-    private fun hideSoftKeyboard(activity: Activity) {
+    fun hideSoftKeyboard(activity: Activity) {
         val inputMethodManager =
             activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)

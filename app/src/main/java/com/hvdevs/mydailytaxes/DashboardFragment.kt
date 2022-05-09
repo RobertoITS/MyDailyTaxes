@@ -3,18 +3,16 @@ package com.hvdevs.mydailytaxes
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hvdevs.mydailytaxes.adapter.TaxesAdapter
 import com.hvdevs.mydailytaxes.constructor.Taxes
@@ -24,7 +22,6 @@ import com.hvdevs.mydailytaxes.mvvm.domain.TaxesUseCaseImplement
 import com.hvdevs.mydailytaxes.mvvm.presentation.viewmodel.TaxesViewModel
 import com.hvdevs.mydailytaxes.mvvm.presentation.viewmodel.TaxesViewModelFactory
 import com.hvdevs.mydailytaxes.resource.Resource
-import com.hvdevs.mydailytaxes.utilities.Utilities
 
 class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
@@ -44,8 +41,6 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-
-
 
 //        binding.rv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -77,14 +72,15 @@ class DashboardFragment : Fragment() {
             it.startAnimation(fabRotate)
             it.background.setTint(Color.parseColor("#FF0000"))
             it.animate().scaleX(0.8f).scaleY(0.8f)
-            Utilities.addFragment(requireFragmentManager(), R.id.add_taxes, DetailsFragment())
+            addFragment(R.id.add_taxes, AddFragment())
+
         }
         else {
             rotate = false
             it.startAnimation(fabRotateOriginPosition)
             it.background.setTint(Color.parseColor("#FF03DAC5"))
             it.animate().scaleX(1f).scaleY(1f)
-            Utilities.removeFragment(requireFragmentManager(), R.id.add_taxes)
+            removeFragment(R.id.add_taxes)
             binding.dark.visibility = View.GONE
         }
     }
@@ -126,8 +122,39 @@ class DashboardFragment : Fragment() {
             override fun onItemClick(position: Int) {
                 val bundle = Bundle()
                 bundle.putString("name", mainList[position].name)
-                Utilities.addFragment(fragmentManager!!, R.id.add_taxes, DetailsFragment())
+                addFragment(R.id.add_taxes, DetailsFragment())
             }
         })
     }
+
+    private fun addFragment(idFrag: Int, fragment: Fragment){
+        val transition = requireActivity().supportFragmentManager.beginTransaction()
+        transition
+            .setCustomAnimations(
+                R.anim.frag_down_to_up,
+                R.anim.frag_up_to_down,
+                R.anim.frag_down_to_up,
+                R.anim.frag_up_to_down
+            )
+        transition
+            .add(idFrag, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun removeFragment(idFrag: Int){
+        val transition = requireActivity().supportFragmentManager.beginTransaction()
+        val frag = requireActivity().supportFragmentManager.findFragmentById(idFrag)
+        transition
+            .setCustomAnimations(
+                R.anim.frag_down_to_up,
+                R.anim.frag_up_to_down,
+                R.anim.frag_down_to_up,
+                R.anim.frag_up_to_down
+            )
+        transition
+            .remove(frag!!)
+            .commit()
+    }
+
 }

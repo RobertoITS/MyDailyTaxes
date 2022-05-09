@@ -1,9 +1,7 @@
 package com.hvdevs.mydailytaxes
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +12,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.hvdevs.mydailytaxes.databinding.FragmentAddBinding
-import java.text.SimpleDateFormat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.ktx.database
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.hvdevs.mydailytaxes.constructor.Taxes
-import com.hvdevs.mydailytaxes.utilities.Utilities
+import com.hvdevs.mydailytaxes.databinding.FragmentAddBinding
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
@@ -37,8 +33,6 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
-
-        Utilities.setupUI(binding.rootAddFragment, activity)
 
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         (binding.typeInput as? AutoCompleteTextView)?.setAdapter(adapter)
@@ -93,7 +87,7 @@ class AddFragment : Fragment() {
                 addTax(tax)
                 val result = true
                 setFragmentResult("requestKey", bundleOf("bundleKey" to result))
-                Utilities.removeFragment(requireFragmentManager(), R.id.add_taxes)
+                removeFragment(R.id.add_taxes)
             }
         }
 
@@ -120,10 +114,26 @@ class AddFragment : Fragment() {
             val date = getDate(datePicker.selection!!, "dd/MM/yyyy")
             textInput.setText(date.toString())
         }
-        datePicker.show(requireFragmentManager(), "tag")
+        datePicker.show(requireActivity().supportFragmentManager, "tag")
     }
 
     private fun addTax(tax: Taxes){ //Con push creamos un nuevo documento
         db.getReference("myTaxes/users/userId/taxes/${LocalDate.now().month}-${LocalDate.now().year}/").push().setValue(tax)
     }
+
+    private fun removeFragment(idFrag: Int){
+        val transition = requireActivity().supportFragmentManager.beginTransaction()
+        val frag = requireActivity().supportFragmentManager.findFragmentById(idFrag)
+        transition
+            .setCustomAnimations(
+                R.anim.frag_down_to_up,
+                R.anim.frag_up_to_down,
+                R.anim.frag_down_to_up,
+                R.anim.frag_up_to_down
+            )
+        transition
+            .remove(frag!!)
+            .commit()
+    }
+
 }

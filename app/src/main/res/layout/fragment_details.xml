@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootActivity"
     tools:context=".DetailsFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:layout_marginVertical="?attr/actionBarSize">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/mainLayout"
@@ -18,7 +19,8 @@
             android:id="@+id/appbarMain"
             android:layout_width="match_parent"
             android:layout_height="278dp"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            >
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbarLayoutMain"
@@ -26,14 +28,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="@color/teal_700"
+                app:contentScrim="@android:color/transparent"
                 app:collapsedTitleGravity="center"
                 app:titleCollapseMode="fade"
                 app:expandedTitleGravity="center"
                 app:title="Titulo, Cambiar"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.Toolbar.Text"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-                app:toolbarId="@id/toolbarMain">
+                app:toolbarId="@id/toolbarMain"
+                android:background="@android:color/transparent">
 
                 <ImageView
                     android:id="@+id/detail_image"
