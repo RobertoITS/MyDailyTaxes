@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/dashboard" android:enabled="true"
+        android:title="Dashboard" android:icon="@drawable/ic_dashboard"/>
+    <item android:id="@+id/statistics" android:enabled="true"
+        android:title="Estadisticas" android:icon="@drawable/ic_statistics"/>
+    <item android:id="@+id/monthly" android:enabled="true"
+        android:title="Mensual" android:icon="@drawable/ic_monthly"/>
+</menu>

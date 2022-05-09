@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "879554123536",
+    "project_id": "mydailytaxes",
+    "storage_bucket": "mydailytaxes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879554123536:android:27cc31741c76c3d8fb7795",
+        "android_client_info": {
+          "package_name": "com.hvdevs.mydailytaxes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879554123536-oim71v6v7csqbevstis3pembjc8hmh4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi2vvQHLktLBEEyXMIHrrmAwLEuuCHryA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879554123536-oim71v6v7csqbevstis3pembjc8hmh4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

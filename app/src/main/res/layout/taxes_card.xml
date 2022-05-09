@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="20dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -52,41 +53,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tax"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-            <ImageButton
-                android:id="@+id/delete_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_delete"
-                android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price"/>
-
-            <ImageButton
-                android:id="@+id/done_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_done"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/modify_btn"
-                app:layout_constraintTop_toBottomOf="@+id/price"/>
-
-            <ImageButton
-                android:id="@+id/modify_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_modify"
-                android:scaleType="centerCrop"
-                app:layout_constraintTop_toBottomOf="@+id/price"
-                app:layout_constraintStart_toEndOf="@+id/delete_btn"
-                app:layout_constraintEnd_toStartOf="@+id/done_btn"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
